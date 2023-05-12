@@ -24,11 +24,11 @@ namespace Csharp_Entity_Framework_Players
 
         public int GamesWon { get; set; }
 
-        //public string TeamName { get; set; }
-        //public Team Team { get; set; }
+        public int TeamId { get; set; }
+        public Team Team { get; set; }
 
 
-        public Player(string name, string surname, int gamesPlayed, int gamesWon )
+        public Player(string name, string surname, int gamesPlayed, int gamesWon,int teamId )
         {
             Name = name;
             Surname = surname;
@@ -42,14 +42,14 @@ namespace Csharp_Entity_Framework_Players
                 GamesWon = gamesWon; ;
             }
             Score = GamesPlayed + (GamesWon * 2);
-            //TeamName = teamName;
+            TeamId = teamId;
         }
 
 
         public override string ToString()
         {
 
-            string stringa = $"Nome : {Name}, Cognome : {Surname}, Punteggio : {Score}, Partite giocate : {GamesPlayed}, Partite vinte : {GamesWon}, Nome della squadra :";
+            string stringa = $"Nome : {Name}, Cognome : {Surname}, Punteggio : {Score}, Partite giocate : {GamesPlayed}, Partite vinte : {GamesWon}, Id della squadra : {TeamId}\n";
             return stringa;
         }
 
