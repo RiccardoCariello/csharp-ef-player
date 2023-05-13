@@ -19,7 +19,7 @@ namespace Csharp_Entity_Framework_Players
         [MaxLength(20)]
         public string Colours { get; set; }
 
-        List<Player>? PlayerList { get; set; }
+        List<Player> PlayerList { get; set; }   //?
 
         public Team(string teamName, string city , string coach, string colours)
         {
@@ -32,7 +32,14 @@ namespace Csharp_Entity_Framework_Players
 
         public override string ToString()
         {
-            string stringa = $"Nome della squadra : {TeamName}, Città : {City}, Allenatore : {Coach}, Colori: {Colours}\n";
+            string stringa = $"Nome della squadra : {TeamName}, Città : {City}, Allenatore : {Coach}, Colori: {Colours}\nGiocatori : \n";
+            if (PlayerList != null)
+            {
+                foreach (Player player in PlayerList)
+                {
+                    stringa +=$"{player.Name} {player.Surname} + \n";
+                }
+            } 
             return stringa;
         }
     }

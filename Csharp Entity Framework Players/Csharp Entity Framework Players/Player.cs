@@ -23,6 +23,7 @@ namespace Csharp_Entity_Framework_Players
         public int GamesPlayed { get; set; }
 
         public int GamesWon { get; set; }
+        //public string teamName { get; set; }
 
         public int TeamId { get; set; }
         public Team Team { get; set; }
@@ -43,6 +44,26 @@ namespace Csharp_Entity_Framework_Players
             }
             Score = GamesPlayed + (GamesWon * 2);
             TeamId = teamId;
+            /*
+            if (teamName != null)
+            {
+                using (Context db = new Context())
+                {
+                    foreach (Team c in db.Teams)
+                    {
+                        if (c.TeamName == teamName)
+                        {
+                            TeamId = c.TeamId;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                this.teamName = "Not Hired";
+                TeamId = 6;
+            }
+            */
         }
 
 

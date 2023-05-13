@@ -17,7 +17,7 @@ using(Context db = new Context())
 
 
 
-while (input != 5)
+while (input != 9)
 {
     Console.WriteLine("GESTORE Players");
     Console.WriteLine();
@@ -26,6 +26,7 @@ while (input != 5)
     Console.WriteLine("2. Cerca un giocatore");
     Console.WriteLine("3. Cancella un giocatore");
     Console.WriteLine("4. Inserisci un team: ");
+    Console.WriteLine("5. Cerca un team");
     //Console.WriteLine("4. Ricerca i videogame che hanno il titolo contenente una determinata stringa");
     //Console.WriteLine("5. Cancella un videogame");
     //Console.WriteLine("6. Esci");
@@ -34,12 +35,14 @@ while (input != 5)
 
     switch (input)
     {
+        case 9: Console.WriteLine("Ciao!"); break;
         case 1: InsertNewPlayer();
             break;
         case 2: SearchPlayer();
             break;
         case 3: RemovePlayer(); break;
         case 4: InsertNewTeam(); break;
+        case 5: SearchTeam(); break;
     }
 
 }
@@ -55,8 +58,8 @@ void InsertNewPlayer()
     Console.WriteLine("Quante di queste le ha vinte?");
     int gamesWon = int.Parse(Console.ReadLine());
     Console.WriteLine("In che squadra gioca?(Inserisci l'id)");
-    int teamName =int.Parse(Console.ReadLine());
-
+    //string teamName =Console.ReadLine();
+    int teamId = int.Parse(Console.ReadLine());
     try
     {
         Player player = new Player(nome, surname, gamesPlayed, gamesWon, teamName);
@@ -94,7 +97,23 @@ void InsertNewTeam()
     catch (Exception ex) { Console.WriteLine(ex.Message); }
 }
 
+void SearchTeam()
+{
+    Console.WriteLine("Quale team vuoi vedere?");
+    string stringa ="";
+    stringa = Console.ReadLine();
 
+    using (Context db = new Context())
+    {
+        Team teamFound = db.Teams.Where( Teamname => Teamname.TeamName == stringa).FirstOrDefault();
+        if (teamFound != null)
+        {
+            Console.WriteLine(teamFound.ToString());
+        }
+        else { Console.WriteLine("Squadra non trovata :("); }
+    }
+
+}
 
 void SearchPlayer()
 {
