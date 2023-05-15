@@ -42,5 +42,7 @@ namespace Csharp_Entity_Framework_Players
             } 
             return stringa;
         }
+
+        
     }
 }

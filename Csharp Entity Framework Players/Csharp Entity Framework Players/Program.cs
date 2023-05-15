@@ -62,7 +62,7 @@ void InsertNewPlayer()
     int teamId = int.Parse(Console.ReadLine());
     try
     {
-        Player player = new Player(nome, surname, gamesPlayed, gamesWon, teamName);
+        Player player = new Player(nome, surname, gamesPlayed, gamesWon, teamId);
         using (Context db = new Context())
         {
             db.Add(player);
@@ -109,6 +109,7 @@ void SearchTeam()
         if (teamFound != null)
         {
             Console.WriteLine(teamFound.ToString());
+            
         }
         else { Console.WriteLine("Squadra non trovata :("); }
     }
